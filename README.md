@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ALLIET Software Labs
 
-## Getting Started
+[![Website](https://img.shields.io/badge/Website-alliet.company-blue)](https://alliet.company)
+[![Next.js](https://img.shields.io/badge/Built%20with-Next.js%2014-black)](https://nextjs.org/)
 
-First, run the development server:
+This is the official repository for the **ALLIET Software Labs** website. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ALLIET is an independent engineering and product studio based in Hyderabad, India. We build AI systems, web products, and automation tools for clients, and we develop our own software alongside client work under the philosophy: *"We build what we believe should exist."*
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💡 Our Philosophy
+> *"We build software. Carefully, and in the open."*
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Our core engineering principles are:
+- **Build the risky part first.** Tackle the hardest engineering challenges upfront.
+- **Architectural clarity.** Keep the codebase clean, modular, and maintainable.
+- **Honest about AI.** Grounded context, validated outputs, and sensible fallbacks. No empty hype.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Services
 
-## Learn More
+We specialize in four key areas of software engineering:
+1. **AI Systems:** LLM features and intelligent agents, robust memory and retrieval pipelines (knowledge graphs, RAG), working with hosted models (Groq) and local open-source models (Ollama).
+2. **Digital Products:** End-to-end web applications (React, Next.js, Node.js), company websites, progressive web apps (PWAs), interface design, and interactive fiction.
+3. **Automation & Integration:** Workflow automation, third-party API integration, scheduled cron jobs, and complex email/notification pipelines.
+4. **Software Engineering:** Secure backend services and APIs (Node.js, Express), resilient data modeling, deployment, and ongoing infrastructure maintenance.
 
-To learn more about Next.js, take a look at the following resources:
+## 💼 Featured Work
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Syntapse:** A multi-agent system for early-stage software planning. Five agents coordinate through a shared Cognee knowledge graph on Memgraph, using a Redis event bus.
+- **M.M. Cartons:** Client work. A highly performant, responsive website for a carton manufacturing company that has maintained a #1 Google ranking for over 2 years.
+- **DeskGlow:** An offline-first, ambient desk clock Progressive Web App (PWA) with zero backend reliance.
+- **MEMORABLE:** A cyberpunk interactive fiction game built in Python/pygame, featuring AI dialogue generated via Groq, with handwritten fallbacks when offline.
+- **PayLoop:** A backend API architecture for tracking subscriptions and automating email reminders prior to renewal.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Running Locally
 
-## Deploy on Vercel
+To run the ALLIET website locally on your machine:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Set up Environment Variables:**
+   Create a `.env.local` file in the root directory and add the necessary API keys for the AI chatbot and contact form:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   RESEND_API_KEY=your_resend_api_key_here
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📬 Contact
+
+- **Email:** [contact@alliet.company](mailto:contact@alliet.company)
+- **Website:** [alliet.company](https://alliet.company)
