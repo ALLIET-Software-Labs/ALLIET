@@ -162,7 +162,7 @@ export default function Home() {
         {/* CONTACT / CTA */}
         <section className="py-32 bg-background relative overflow-hidden">
           <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-             <FadeIn className="relative z-10" direction="right">
+             <FadeIn className="relative z-10">
                 <h2 className="text-sm uppercase tracking-widest text-text-secondary mb-6">06. Start a conversation</h2>
                 <h3 className="text-5xl md:text-7xl font-bold tracking-tight text-primary mb-6 leading-[1.1]">
                   Tell us what <br/>
@@ -180,7 +180,7 @@ export default function Home() {
                   </a>
                 </div>
              </FadeIn>
-             <FadeIn className="relative aspect-square md:aspect-auto md:h-full min-h-[400px] rounded-lg border border-border overflow-hidden bg-surface-alt" direction="left" data-cursor="image">
+             <FadeIn className="relative w-full aspect-square md:aspect-auto md:h-full md:min-h-[400px] rounded-lg border border-border overflow-hidden bg-surface-alt" data-cursor="image">
                 <Image src="/images/contact_visual.jpg" alt="Ideas to Systems Visualization" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
              </FadeIn>
           </div>

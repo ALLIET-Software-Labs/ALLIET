@@ -271,7 +271,7 @@ export default function EngineeringDemo() {
         </div>
 
         {/* MOBILE STACK (VERTICAL) */}
-        <div className="lg:hidden absolute inset-0 w-full h-full overflow-y-auto p-6 pb-24 flex flex-col items-center">
+        <div className="lg:hidden relative w-full p-6 pb-24 flex flex-col items-center">
            {/* Render nodes in vertical order */}
            {[
              NODES.input, 

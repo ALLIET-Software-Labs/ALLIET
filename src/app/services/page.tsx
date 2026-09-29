@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 import MagneticCTA from "@/components/MagneticCTA";
+import ServiceItem from "@/components/ServiceItem";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -107,23 +108,7 @@ export default function ServicesPage() {
                   <div className="flex flex-col">
                     {group.items.map((item, itemIndex) => (
                       <FadeIn key={item.name} delay={150 + (itemIndex * 50)}>
-                        <div className="group relative py-8 border-t border-border first:border-t-0 hover:bg-surface-alt transition-colors duration-300 -mx-6 px-6 sm:mx-0 sm:px-4 rounded-lg cursor-default overflow-hidden" data-cursor="text">
-                          <div className="absolute left-0 top-0 w-1 h-full bg-primary scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-                          
-                          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 relative z-10">
-                            <h3 className="text-2xl font-semibold text-primary transition-colors duration-300">
-                              {item.name}
-                            </h3>
-                          </div>
-                          
-                          <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
-                            <div className="overflow-hidden">
-                              <p className="text-lg text-text-secondary pt-4 max-w-xl leading-relaxed">
-                                {item.desc}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                        <ServiceItem name={item.name} desc={item.desc} />
                       </FadeIn>
                     ))}
                   </div>
