@@ -125,7 +125,7 @@ export default function InteractiveHeroVisual() {
     >
       {/* Base Image with scale to prevent edge bleed during parallax */}
       <div ref={layerBaseRef} className="absolute inset-0 w-full h-full scale-105 origin-center will-change-transform">
-        <Image src="/images/hero_architectural_visual.jpg" alt="ALLIET Software Labs Architecture" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" preload />
+        <Image src="/images/hero_architectural_visual.jpg" alt="ALLIET Software Labs Architecture" fill sizes="(min-width: 1024px) 50vw, calc(100vw - 48px)" className="object-cover" preload />
       </div>
 
       {/* Technical Annotation 1 */}

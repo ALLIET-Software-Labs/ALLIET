@@ -5,6 +5,7 @@
 // Nothing here calls /api/chat; the model is only contacted when a message is sent.
 
 import { useCallback, useState, type ComponentType } from "react";
+import Image from "next/image";
 
 type PanelProps = { open: boolean; onClose: () => void; onKeyboardInset: (px: number) => void };
 
@@ -78,8 +79,7 @@ export default function Chatbot() {
             <path d="M13 1L1 13M1 1L13 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         ) : (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img src="/favicon.ico" alt="" width={32} height={32} className="w-8 h-8 object-contain rounded-full relative z-10" />
+          <Image src="/icon.png" alt="" width={32} height={32} className="w-8 h-8 object-contain rounded-full relative z-10" />
         )}
       </button>
     </div>

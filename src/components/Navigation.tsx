@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -30,8 +31,8 @@ export default function Navigation() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group hover:opacity-80 transition-opacity">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/alliet-logo.png" alt="ALLIET Software Labs" className="h-6 sm:h-7 w-auto object-contain" />
+          {/* Displayed ~108x28; next/image serves a resized AVIF/WebP instead of the 238 KB source PNG. */}
+          <Image src="/alliet-logo.png" alt="ALLIET Software Labs" width={108} height={28} loading="eager" className="h-6 sm:h-7 w-auto object-contain" />
         </Link>
         
         {/* Desktop Nav */}

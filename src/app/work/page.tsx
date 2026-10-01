@@ -6,12 +6,14 @@ import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import { m, AnimatePresence, LazyMotion } from "framer-motion";
 
-const loadMotionFeatures = () => import("@/components/motion-features").then((mod) => mod.default);
+import { loadMotionFeatures } from "@/components/motion-features-loader";
 
 import { projects, categories } from "@/data/projects";
 
 export default function WorkPage() {
   const [filter, setFilter] = useState("All");
+  // CSS handles the first entrance (with the same stagger); framer-motion animates filter changes.
+  const [hasFiltered, setHasFiltered] = useState(false);
 
   const filteredProjects = projects.filter(p => filter === "All" || p.category === filter);
 
@@ -32,7 +34,7 @@ export default function WorkPage() {
               {categories.map(c => (
                 <button 
                   key={c}
-                  onClick={() => setFilter(c)}
+                  onClick={() => { setFilter(c); setHasFiltered(true); }}
                   className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${
                     filter === c 
                       ? "bg-primary text-surface" 
@@ -47,7 +49,7 @@ export default function WorkPage() {
         </FadeIn>
 
         <m.div layout className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <AnimatePresence mode="popLayout">
+          <AnimatePresence mode="popLayout" initial={false}>
             {filteredProjects.map((p, i) => {
               // Determine column span based on size and current filter
               // If filtered, make everything standard size for better flow, otherwise use editorial sizing
@@ -68,13 +70,14 @@ export default function WorkPage() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, type: "spring", bounce: 0, delay: !isFiltered ? i * 0.05 : 0 }}
                   key={p.id} 
-                  className={colSpan}
+                  className={`${colSpan} ${hasFiltered ? "" : "alliet-card-in"}`}
+                  style={hasFiltered ? undefined : { animationDelay: `${i * 50}ms` }}
                 >
                   <Link href={`/work/${p.id}`} className="group flex flex-col h-full" data-cursor="project">
                     <div className={`relative bg-surface-alt rounded-lg border border-border w-full overflow-hidden shadow-sm group-hover:shadow-lg transition-all duration-500 mb-6 ${
                       (!isFiltered && p.size === "large") ? "aspect-video" : "aspect-square md:aspect-[4/3]"
                     }`}>
-                      <Image src={p.img} alt={p.title} fill sizes={(!isFiltered && p.size === "large") ? "(min-width: 1024px) 66vw, 100vw" : (!isFiltered && p.size === "medium") ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"} className="object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                      <Image src={p.img} alt={p.title} fill sizes={(!isFiltered && p.size === "large") ? "(min-width: 1024px) 66vw, calc(100vw - 48px)" : (!isFiltered && p.size === "medium") ? "(min-width: 768px) 50vw, calc(100vw - 48px)" : "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, calc(100vw - 48px)"} className="object-cover group-hover:scale-[1.02] transition-transform duration-700" />
                     </div>
                     <div className="flex justify-between items-start mt-auto">
                       <div>

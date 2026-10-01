@@ -6,10 +6,12 @@ import Image from "next/image";
 import { projects } from "@/data/projects";
 import { m, AnimatePresence, LazyMotion } from "framer-motion";
 
-const loadMotionFeatures = () => import("@/components/motion-features").then((mod) => mod.default);
+import { loadMotionFeatures } from "@/components/motion-features-loader";
 
 export default function FeaturedWork() {
   const [filter, setFilter] = useState("All");
+  // CSS handles the first entrance; once the visitor filters, framer-motion animates changes.
+  const [hasFiltered, setHasFiltered] = useState(false);
 
   const categories = ["All", ...Array.from(new Set(projects.map(p => p.category)))];
   const filteredProjects = projects.filter(p => filter === "All" || p.category === filter);
@@ -25,7 +27,7 @@ export default function FeaturedWork() {
           {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setFilter(cat)}
+              onClick={() => { setFilter(cat); setHasFiltered(true); }}
               className={`px-4 py-1.5 rounded-full text-sm whitespace-nowrap transition-colors ${
                 filter === cat
                   ? "bg-primary text-surface"
@@ -39,7 +41,7 @@ export default function FeaturedWork() {
       </div>
 
       <m.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="popLayout" initial={false}>
           {filteredProjects.length === 0 && (
             <m.div 
               key="empty"
@@ -64,7 +66,7 @@ export default function FeaturedWork() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4, type: "spring", bounce: 0 }}
                   key={`featured-${p.id}`}
-                  className="col-span-1 md:col-span-2"
+                  className={`col-span-1 md:col-span-2 ${hasFiltered ? "" : "alliet-card-in"}`}
                 >
                   <Link href={`/work/${p.id}`} className="group h-full block bg-surface-alt rounded-lg border border-border overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500" data-cursor="project">
                     <div className="grid grid-cols-1 md:grid-cols-2 h-full">
@@ -84,7 +86,7 @@ export default function FeaturedWork() {
                       {/* Visual */}
                       <div className="relative min-h-[300px] md:h-full bg-border overflow-hidden">
                         <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors z-10 duration-500"></div>
-                        <Image src={p.img} alt={p.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                        <Image src={p.img} alt={p.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, calc(100vw - 48px)" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                       </div>
                     </div>
                   </Link>
@@ -101,11 +103,11 @@ export default function FeaturedWork() {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, type: "spring", bounce: 0 }}
                 key={p.id}
-                className="col-span-1"
+                className={`col-span-1 ${hasFiltered ? "" : "alliet-card-in"}`}
               >
                 <Link href={`/work/${p.id}`} className="group block h-full bg-background rounded-lg border border-border p-4 flex flex-col shadow-sm hover:shadow-md transition-all duration-500" data-cursor="project">
                    <div className="relative w-full aspect-video bg-surface-alt mb-6 rounded border border-border/50 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
-                     <Image src={p.img} alt={p.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+                     <Image src={p.img} alt={p.title} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, calc(100vw - 48px)" className="object-cover" />
                    </div>
                    <div className="px-2 pb-2 mt-auto">
                       <h3 className="text-xl font-bold mb-1 group-hover:text-accent transition-colors">{p.title}</h3>
