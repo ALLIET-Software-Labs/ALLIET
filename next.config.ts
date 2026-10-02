@@ -45,6 +45,18 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Next.js/Vercel serves .ico files as image/vnd.microsoft.icon by default.
+        // Explicitly setting image/x-icon improves compatibility with search-engine
+        // favicon crawlers (Google, Brave) that validate the Content-Type header.
+        source: "/favicon.ico",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "image/x-icon",
+          },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           {
